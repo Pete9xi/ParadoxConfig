@@ -103,18 +103,96 @@ namespace ParadoxConfig
             var extractPath = Path.Combine(Application.StartupPath, $"Paradox-AntiCheat-{selectedVersion}/Paradox");
             var outputFolderPath = Path.Combine(Application.StartupPath, $"Paradox-AntiCheat-{selectedVersion}");
             var outputFilePath = Path.Combine(outputFolderPath, $"Paradox-AntiCheat-{ selectedVersion}.zip");
-
+            var prefix = txtPrefix.Text;
+            var maxHomes = txtHomeAmount.Text;
+            var HotbarMsg = txtHotBarMsg.Text;
+            var rule1 = txtRule1.Text + '"';
+            var rule2 = txtRule2.Text + '"';
+            var rule3 = txtRule3.Text + '"';
+            var rule4 = txtRule4.Text + '"';
+            var rule5 = txtRule5.Text + '"';
+            var banAppeal = txtBanAppeal.Text;
             Directory.CreateDirectory(outputFolderPath);
 
-            // Update the password in the config.js file
+            // Update the settings in the config.js file
             var configFile = Path.Combine(extractPath, "scripts/data/config.js");
             string[] lines = File.ReadAllLines(configFile);
             for (int i = 0; i < lines.Length; i++)
             {
+
+                if (lines[i].Contains("prefix: \"!\""))
+                {
+                    lines[i] = lines[i].Replace("prefix: \"!\"", $"prefix: \"{prefix}\"");
+                }
                 if (lines[i].Contains("password: \"\""))
                 {
                     lines[i] = lines[i].Replace("password: \"\"", $"password: \"{password}\"");
                     break;
+                }
+                if (lines[i].Trim() == "setHome: {") { 
+                for (int j = i + 1; j < lines.Length; j++)
+                {
+                    if (lines[j].Contains("max: "))
+                     {
+                        // Update the "max" property to your desired value
+                        lines[j] = "            max: " + maxHomes + ",";
+                        break; // Exit the inner loop after updating
+                        }
+                    }
+                }
+                if (lines[i].Contains("message: \"Hotbar is enabled (Set your message to change this)\""))
+                {
+                    lines[i] = lines[i].Replace("message: \"Hotbar is enabled (Set your message to change this)\"", $"message: \"{HotbarMsg}\"");
+                }
+                if (lines[i].Contains("Rule1: "))
+                {
+                    string[] parts = lines[i].Split(new string[] { "Rule1: " }, StringSplitOptions.None);
+
+                    if (parts.Length == 2)
+                    {
+                        lines[i] = parts[0] + "Rule1: " + rule1;
+                    }
+                }
+                if (lines[i].Contains("Rule2: "))
+                {
+                    string[] parts = lines[i].Split(new string[] { "Rule2: " }, StringSplitOptions.None);
+
+                    if (parts.Length == 2)
+                    {
+                        lines[i] = parts[0] + "Rule2: " + rule2;
+                    }
+                }
+                if (lines[i].Contains("Rule3: "))
+                {
+                    string[] parts = lines[i].Split(new string[] { "Rule3: " }, StringSplitOptions.None);
+
+                    if (parts.Length == 2)
+                    {
+                        lines[i] = parts[0] + "Rule3: " + rule3;
+                    }
+                }
+                if (lines[i].Contains("Rule4: "))
+                {
+                    string[] parts = lines[i].Split(new string[] { "Rule4: " }, StringSplitOptions.None);
+
+                    if (parts.Length == 2)
+                    {
+                        lines[i] = parts[0] + "Rule4: " + rule4;
+                    }
+                }
+                if (lines[i].Contains("Rule5: "))
+                {
+                    string[] parts = lines[i].Split(new string[] { "Rule5: " }, StringSplitOptions.None);
+
+                    if (parts.Length == 2)
+                    {
+                        lines[i] = parts[0] + "Rule5: " + rule5;
+                    }
+                }
+                //discordLink:
+                if (lines[i].Contains("discordLink: \"https://discord.gg\""))
+                {
+                    lines[i] = lines[i].Replace("discordLink: \"https://discord.gg\"", $"discordLink: \"{banAppeal}\"");
                 }
             }
             File.WriteAllLines(configFile, lines);
@@ -131,7 +209,7 @@ namespace ParadoxConfig
                     zipArchive.CreateEntryFromFile(filePath, relativePath, CompressionLevel.Optimal);
                 }
             }
-
+            //Once the Zip has been created rename it to .mcpack and move it to the root folder of the application. then cleanup.
             txtLog.AppendText("Files re-zipped successfully." + Environment.NewLine);
             var saveFilePath = Path.Combine(Application.StartupPath, $"Paradox-AntiCheat-{selectedVersion}/Paradox-AntiCheat-{selectedVersion}.zip");
             var newFileName = Path.ChangeExtension(saveFilePath, ".mcpack");
@@ -139,7 +217,7 @@ namespace ParadoxConfig
             var finalePack = Path.Combine(Application.StartupPath, $"Paradox-AntiCheat-{selectedVersion}/Paradox-AntiCheat-{selectedVersion}.mcpack");
             var applicationDir = Path.Combine(Application.StartupPath, $"Paradox-AntiCheat-{ selectedVersion}.mcpack");
             File.Move(finalePack, applicationDir);
-            txtLog.AppendText("The pack has been created with the requested password can be imported." +Environment.NewLine);
+            txtLog.AppendText("The pack has been created with the requested password, this can now be imported." +Environment.NewLine);
             Directory.Delete(Path.Combine(Application.StartupPath, $"Paradox-AntiCheat-{selectedVersion}"),true);
         }
         private void comboBoxReleases_SelectedIndexChanged(object sender, EventArgs e)
