@@ -150,7 +150,7 @@ namespace ParadoxConfig
 
                     if (parts.Length == 2)
                     {
-                        lines[i] = parts[0] + "Rule1: " + rule1;
+                        lines[i] = parts[0] + "Rule1: " + rule1 + ",";
                     }
                 }
                 if (lines[i].Contains("Rule2: "))
@@ -159,7 +159,7 @@ namespace ParadoxConfig
 
                     if (parts.Length == 2)
                     {
-                        lines[i] = parts[0] + "Rule2: " + rule2;
+                        lines[i] = parts[0] + "Rule2: " + rule2 + ",";
                     }
                 }
                 if (lines[i].Contains("Rule3: "))
@@ -168,7 +168,7 @@ namespace ParadoxConfig
 
                     if (parts.Length == 2)
                     {
-                        lines[i] = parts[0] + "Rule3: " + rule3;
+                        lines[i] = parts[0] + "Rule3: " + rule3 + ",";
                     }
                 }
                 if (lines[i].Contains("Rule4: "))
@@ -177,7 +177,7 @@ namespace ParadoxConfig
 
                     if (parts.Length == 2)
                     {
-                        lines[i] = parts[0] + "Rule4: " + rule4;
+                        lines[i] = parts[0] + "Rule4: " + rule4 + ",";
                     }
                 }
                 if (lines[i].Contains("Rule5: "))
@@ -186,7 +186,7 @@ namespace ParadoxConfig
 
                     if (parts.Length == 2)
                     {
-                        lines[i] = parts[0] + "Rule5: " + rule5;
+                        lines[i] = parts[0] + "Rule5: " + rule5 +",";
                     }
                 }
                 //discordLink:

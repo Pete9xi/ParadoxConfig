@@ -60,7 +60,7 @@ namespace ParadoxConfig
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(204, 306);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 21);
             this.button1.TabIndex = 0;
@@ -72,7 +72,7 @@ namespace ParadoxConfig
             // 
             this.comboBoxReleases.FormattingEnabled = true;
             this.comboBoxReleases.Location = new System.Drawing.Point(204, 7);
-            this.comboBoxReleases.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxReleases.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxReleases.Name = "comboBoxReleases";
             this.comboBoxReleases.Size = new System.Drawing.Size(141, 21);
             this.comboBoxReleases.TabIndex = 1;
@@ -273,7 +273,7 @@ namespace ParadoxConfig
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(46, 13);
             this.lblVersion.TabIndex = 24;
-            this.lblVersion.Text = "v1.0.0.2";
+            this.lblVersion.Text = "v1.0.0.3";
             // 
             // Form1
             // 
@@ -306,7 +306,7 @@ namespace ParadoxConfig
             this.Controls.Add(this.comboBoxReleases);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "ParadoxConfig";
             this.Load += new System.EventHandler(this.Form1_Load);
